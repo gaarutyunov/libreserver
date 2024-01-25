@@ -35,6 +35,9 @@ test: devenv
 release: devenv
 	$(bin_dir)/fullrelease
 
+build: devenv
+	$(bin_dir)/pip install build
+	$(bin_dir)/pip build
 
 clean:
 	rm -rf ve build htmlcov
