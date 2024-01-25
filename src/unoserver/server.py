@@ -177,7 +177,8 @@ def main():
         "--uno-port", default="2002", help="The port used by the Libreoffice UNO server"
     )
     parser.add_argument("--daemon", action="store_true", help="Deamonize the server")
-    parser.add_argument("--crashreport", action="store_false", help="Output crashreport")
+    parser.add_argument("--nocrashreport", action="store_true", help="Don't output crashreport")
+    parser.add_argument("--crashreport", action="store_false", dest="nocrashreport", help="Output crashreport")
     parser.add_argument(
         "--executable",
         default="libreoffice",
@@ -195,6 +196,7 @@ def main():
         help="If set, unoserver will write the Libreoffice PID to this file. If started "
         "in daemon mode, the file will not be deleted when unoserver exits.",
     )
+    parser.set_defaults(nocrashreport=True)
     args = parser.parse_args()
 
     if args.daemon:
@@ -218,7 +220,7 @@ def main():
             args.uno_interface,
             args.uno_port,
             user_installation,
-            args.crashreport,
+            args.nocrashreport,
         )
 
         # If it's daemonized, this returns the process.
