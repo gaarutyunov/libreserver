@@ -177,6 +177,7 @@ def main():
         "--uno-port", default="2002", help="The port used by the Libreoffice UNO server"
     )
     parser.add_argument("--daemon", action="store_true", help="Deamonize the server")
+    parser.add_argument("--crashreport", action="store_false", help="Output crashreport")
     parser.add_argument(
         "--executable",
         default="libreoffice",
@@ -217,6 +218,7 @@ def main():
             args.uno_interface,
             args.uno_port,
             user_installation,
+            args.crashreport,
         )
 
         # If it's daemonized, this returns the process.
