@@ -3,8 +3,8 @@ requires = ["setuptools>=61.2"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "unoserver"
-version = "2.1.dev0"
+name = "libreserver"
+version = "0.1.0"
 description = "A server for file conversions with Libre Office"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -22,7 +22,7 @@ classifiers = [
 keywords = ["libreoffice", "conversion", "documents", "uno", "unoconv"]
 authors = [{name = "Lennart Regebro", email = "regebro@gmail.com"}]
 license = {text = "MIT"}
-urls = {Homepage = "https://github.com/unoconv/unoserver"}
+urls = {Homepage = "https://github.com/gaarutyunov/libreserver"}
 dynamic = ["readme"]
 requires-python = ">= 3.8"
 
