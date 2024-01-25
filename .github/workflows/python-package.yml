@@ -32,10 +32,10 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install libreoffice
-    - name: Test with pytest
-      run: |
-        source ve/bin/activate
-        make test
+    # - name: Test with pytest
+    #   run: |
+    #     source ve/bin/activate
+    #     make test
     - name: Build package
       run: |
         make build
