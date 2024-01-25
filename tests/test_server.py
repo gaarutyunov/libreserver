@@ -17,12 +17,32 @@ def test_server_params(popen_mock, thread_mock):
             "libreoffice",
             "--headless",
             "--invisible",
-            "--nocrashreport",
             "--nodefault",
             "--nologo",
             "--nofirststartwizard",
             "--norestore",
             f"-env:UserInstallation={srv.user_installation}",
             "--accept=socket,host=127.0.0.1,port=2202,tcpNoDelay=1;urp;StarOffice.ComponentContext",
+        ]
+    )
+
+
+@mock.patch("threading.Thread")
+@mock.patch("subprocess.Popen")
+def test_server_params_nocrashreport(popen_mock, thread_mock):
+    srv = server.UnoServer(port="2203", uno_port="2202", nocrashreport=True)
+    srv.start()
+    popen_mock.assert_called_with(
+        [
+            "libreoffice",
+            "--headless",
+            "--invisible",
+            "--nodefault",
+            "--nologo",
+            "--nofirststartwizard",
+            "--norestore",
+            f"-env:UserInstallation={srv.user_installation}",
+            "--accept=socket,host=127.0.0.1,port=2202,tcpNoDelay=1;urp;StarOffice.ComponentContext",
+            "--nocrashreport",
         ]
     )
