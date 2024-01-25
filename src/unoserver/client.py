@@ -84,7 +84,12 @@ class UnoClient:
                 indata = infile.read()
                 inpath = None
 
-        with ServerProxy(f"http://{self.server}:{self.port}", allow_none=True) as proxy:
+        if self.port is not None:
+            url = f"http://{self.server}:{self.port}"
+        else:
+            url = f"http://{self.server}"
+
+        with ServerProxy(url, allow_none=True) as proxy:
             result = proxy.convert(
                 inpath,
                 indata,

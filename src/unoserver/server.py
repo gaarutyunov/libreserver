@@ -23,6 +23,7 @@ class UnoServer:
         uno_interface="127.0.0.1",
         uno_port="2002",
         user_installation=None,
+        nocrashreport=False
     ):
         self.interface = interface
         self.uno_interface = uno_interface
@@ -32,6 +33,7 @@ class UnoServer:
         self.libreoffice_process = None
         self.xmlrcp_thread = None
         self.xmlrcp_server = None
+        self.nocrashreport = nocrashreport
 
     def start(self, executable="libreoffice"):
         logger.info("Starting unoserver.")
@@ -47,7 +49,6 @@ class UnoServer:
             executable,
             "--headless",
             "--invisible",
-            "--nocrashreport",
             "--nodefault",
             "--nologo",
             "--nofirststartwizard",
@@ -55,6 +56,9 @@ class UnoServer:
             f"-env:UserInstallation={self.user_installation}",
             f"--accept={connection}",
         ]
+
+        if self.nocrashreport:
+            cmd.append("--nocrashreport")
 
         logger.info("Command: " + " ".join(cmd))
         self.libreoffice_process = subprocess.Popen(cmd)
