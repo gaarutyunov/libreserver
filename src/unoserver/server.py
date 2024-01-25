@@ -23,7 +23,7 @@ class UnoServer:
         uno_interface="127.0.0.1",
         uno_port="2002",
         user_installation=None,
-        nocrashreport=False
+        nocrashreport=True
     ):
         self.interface = interface
         self.uno_interface = uno_interface

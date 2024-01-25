@@ -23,6 +23,7 @@ def test_server_params(popen_mock, thread_mock):
             "--norestore",
             f"-env:UserInstallation={srv.user_installation}",
             "--accept=socket,host=127.0.0.1,port=2202,tcpNoDelay=1;urp;StarOffice.ComponentContext",
+            "--nocrashreport",
         ]
     )
 
@@ -30,7 +31,7 @@ def test_server_params(popen_mock, thread_mock):
 @mock.patch("threading.Thread")
 @mock.patch("subprocess.Popen")
 def test_server_params_nocrashreport(popen_mock, thread_mock):
-    srv = server.UnoServer(port="2203", uno_port="2202", nocrashreport=True)
+    srv = server.UnoServer(port="2203", uno_port="2202", nocrashreport=False)
     srv.start()
     popen_mock.assert_called_with(
         [
@@ -43,6 +44,5 @@ def test_server_params_nocrashreport(popen_mock, thread_mock):
             "--norestore",
             f"-env:UserInstallation={srv.user_installation}",
             "--accept=socket,host=127.0.0.1,port=2202,tcpNoDelay=1;urp;StarOffice.ComponentContext",
-            "--nocrashreport",
         ]
     )
