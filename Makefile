@@ -37,7 +37,7 @@ release: devenv
 
 build: devenv
 	$(bin_dir)/pip install build
-	$(bin_dir)/pip build
+	$(bin_dir)/python -m build
 
 clean:
 	rm -rf ve build htmlcov
